@@ -21,7 +21,14 @@ public class LibraryManagementSystemApplication {
     @Bean
     CommandLineRunner commandLineRunner(AuthorRepository authorRepository, BookRepository bookRepository) {
         return args -> {
-            System.out.println("Welcome to Library Management System!");
+            System.out.println("""
+
+
+
+                    Welcome to Library Management System!
+
+
+                    """);
 
             Author a1 = new Author("George", "Orwell");
             authorRepository.save(a1);
@@ -41,11 +48,6 @@ public class LibraryManagementSystemApplication {
             Book b3 = new Book("Harry Potter", "003", a3);
             bookRepository.save(b3);
 
-            System.out.println("Lista autorilor");
-            authorRepository.findAll().forEach(System.out::println);
-
-            System.out.println("Lista cartilor");
-            bookRepository.findAll().forEach(System.out::println);
         };
     }
 

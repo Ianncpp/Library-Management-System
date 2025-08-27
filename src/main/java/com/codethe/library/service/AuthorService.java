@@ -18,6 +18,7 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    @Transactional
     public List<Author> findAllAuthors() {
         return authorRepository.findAll();
     }

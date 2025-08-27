@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -24,7 +22,7 @@ public class BookController {
     }
 
     @GetMapping
-    public String book(Model model) {
+    public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
         return "books";
     }
@@ -33,7 +31,14 @@ public class BookController {
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("authors", authorService.findAllAuthors());
-        return "book-form";
+        return "books-add";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable Long id, Model model) {
+        model.addAttribute("book", bookService.getBookById(id));
+        model.addAttribute("authors", authorService.findAllAuthors());
+        return "books-edit";
     }
 
     @PostMapping("/save")
