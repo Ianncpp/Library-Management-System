@@ -5,26 +5,30 @@
     <title>Library Home</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 150px auto;
-            background-color: #F3F4F6;
+            font-family: Arial, sans-serif;
+            background-image: url('/images/library.jpg'); /* imaginea ta */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             color: #1F2937;
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding: 0;
         }
 
         .content {
-            flex: 1; /* ocupă tot spațiul dintre header și footer */
+            flex: 1; /* ocupă tot spațiul între header și footer */
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 40px 20px;
         }
 
         .container {
             text-align: center;
-            background-color: #fff;
-            padding: 50px 80px;
+            background-color: rgba(255, 255, 255, 0.95); /* semi-transparent pentru lizibilitate */
+            padding: 80px 80px;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
@@ -38,7 +42,6 @@
             display: inline-block;
             text-decoration: none;
             color: #fff;
-            background-color: #10B981;
             padding: 18px 40px;
             margin: 10px;
             border-radius: 8px;
@@ -51,12 +54,24 @@
             opacity: 0.85;
         }
 
+        .btn-authors {
+            background-color: #10B981; /* verde modern */
+        }
+
         .btn-books {
-            background-color: #3B82F6;
+            background-color: #3B82F6; /* albastru */
         }
 
         .btn-meme {
-            background-color: #EF4444;
+            background-color: #EF4444; /* roșu */
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #000000; /* footer negru */
+            color: #fff;
+            font-size: 0.9em;
         }
 
     </style>
@@ -65,20 +80,13 @@
 <div class="content">
     <div class="container">
         <h1 th:text="'Welcome to the Library, ' + ${name} + '!'">Welcome to the Library, Reader!</h1>
-        <a th:href="@{/authors}" class="btn">Authors</a>
+        <a th:href="@{/authors}" class="btn btn-authors">Authors</a>
         <a th:href="@{/books}" class="btn btn-books">Books</a>
         <a th:href="@{/meme}" class="btn btn-meme">Smart Man in Glasses</a>
     </div>
 </div>
 
-<footer style="
-    margin: 50px auto;
-    text-align: center;
-    padding: 15px 0;
-    background: #f3f4f6;
-    color: #555;
-    font-size: 0.9em;
-">
+<footer>
     &copy; 2025 realbateman
 </footer>
 </body>

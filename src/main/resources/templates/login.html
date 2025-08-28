@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
+
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #F3F4F6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
+            padding-top: 200px;
         }
 
-        .content {
+        .container {
             flex: 1; /* ocupă tot spațiul dintre header și footer */
             display: flex;
             justify-content: center;
@@ -21,8 +21,10 @@
         }
 
         .login-container {
+            height: 240px;
+            width: 300px;
             background-color: #fff;
-            padding: 50px 60px;
+            padding-top: 20px;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
             text-align: center;
@@ -57,18 +59,10 @@
             opacity: 0.85;
         }
 
-        footer {
-            text-align: center;
-            padding: 15px 0;
-            background: #f3f4f6;
-            color: #555;
-            font-size: 0.9em;
-            margin-top: auto; /* împinge footer-ul jos */
-        }
     </style>
 </head>
 <body>
-<div class="content">
+<div class="container">
     <div class="login-container">
         <h2>Enter Your Name</h2>
         <form th:action="@{/login}" method="post">
@@ -78,6 +72,24 @@
             <br/>
             <button type="submit">Continue</button>
         </form>
+
+        <form th:action="@{/login}" method="post" style="display:inline;">
+            <input type="hidden" name="name" value="Guest"/>
+            <button type="submit" style="
+
+                padding-top: 20px;
+                background:none;
+                border:none;
+                color:#595a5f;
+                font-weight:bold;
+                font-size:0.9rem;
+                cursor:pointer;
+            ">
+                Continue as Guest →
+
+            </button>
+        </form>
+
     </div>
 </div>
 

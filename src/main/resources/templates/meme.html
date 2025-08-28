@@ -3,78 +3,72 @@
 <head>
     <title>Meme Page</title>
     <style>
-        /* Body și layout */
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f8;
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url('/images/library.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
             margin: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* pentru footer jos */
+            color: #1F2937;
         }
 
-        /* Container central */
-        .content {
-            flex: 1; /* ocupă tot spațiul disponibil */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Card-ul meme */
-        .card {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            width: 450px;
+        .container {
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 10px 10px 10px 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
         }
 
-        .card-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-
-        .card img {
+        .meme-img {
             width: 100%;
             height: auto;
-            display: block;
-            border-radius: 0; /* imagine pătrată */
+            border-radius: 12px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 15px 0;
-            background: #f3f4f6;
-            color: #555;
+            background: #000000;
+            color: #fff;
             font-size: 0.9em;
+            margin-top: auto;
         }
+
+        .back-home {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #e3e5ed;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            opacity: 0.7; /* efect la hover */
+        }
+
     </style>
 </head>
 <body>
-<div class="content">
-    <div class="card">
-        <div class="card-header">Smart Man in Glasses</div>
-        <img th:src="@{/images/smart-glasses.jpg}" src="/images/smart-glasses.jpg" alt="Meme">
-    </div>
+<div class="container">
+
+    <a th:href="@{/home}" class="back-home">← Back to Home</a>
+
+    <img th:src="@{/images/smart-glasses.jpg}" src="/images/smart-glasses.jpg" alt="Meme" class="meme-img">
 </div>
 
-<footer style="
-    position: relative; /* sau fixed dacă vrei să fie mereu vizibil */
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    background: #f3f4f6;
-    color: #555;
-    font-size: 0.9em;
-    margin-top: 30px;
-">
+<footer>
     &copy; 2025 realbateman
 </footer>
 </body>

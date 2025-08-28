@@ -18,14 +18,16 @@ public class HomeController {
 
     @PostMapping("/login")
     public String processLogin(@RequestParam String name, RedirectAttributes redirectAttributes) {
+        if (name == null || name.trim().isEmpty()) {
+            name = "Reader";
+        }
         redirectAttributes.addFlashAttribute("name", name);
         return "redirect:/home";
     }
 
     @GetMapping("/home")
-    public String showHomePage(@ModelAttribute("userName") String name, Model model) {
-        System.out.println("Name in model: " + model.getAttribute("name"));
-//        model.addAttribute("userName", name);
+    public String showHomePage(@ModelAttribute("name") String name, Model model) {
+        model.addAttribute("userName", name);
         return "home";
     }
 
