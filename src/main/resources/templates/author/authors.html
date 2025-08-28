@@ -2,33 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Authors</title>
+    <title>Authors List</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #F3F4F6;
-            color: #1F2937;
+            font-family: 'Merriweather', serif;
+            background-image: url('/images/library.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .content {
-            flex: 1; /* ocupă tot spațiul dintre header și footer */
+            color: #1F2937;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
+            min-width: 600px;
             margin: 50px auto;
             padding: 30px;
-            background-color: #fff;
+            background-color: rgba(255,255,255,0.95);
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
             position: relative;
         }
 
-        h2 {
+        h1 {
             text-align: center;
             margin-bottom: 30px;
         }
@@ -39,22 +39,26 @@
         }
 
         th, td {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 15px;
             text-align: left;
         }
 
         th {
-            background-color: #3B82F6;
+            background-color: #dc8920;
             color: white;
+            text-transform: uppercase;
         }
 
-        td {
-            vertical-align: top;
+        tr:nth-child(even) {
+            background-color: #E5E7EB;
+        }
+
+        tr:hover {
+            background-color: #D1D5DB;
         }
 
         button {
-            padding: 8px 12px;
+            padding: 12px 12px;
             background-color: #EF4444;
             color: #fff;
             border: none;
@@ -69,10 +73,10 @@
 
         a.button {
             display: inline-block;
-            margin-top: 10px;
+            margin: 10px 10px;
             text-decoration: none;
             color: #fff;
-            background-color: #10B981;
+            background-color: #dc8920;
             padding: 8px 12px;
             border-radius: 6px;
             transition: 0.3s;
@@ -82,38 +86,43 @@
             opacity: 0.85;
         }
 
-        /* Modern dropdown for books */
+        /* Dropdown modern */
         .dropdown {
             position: relative;
             display: inline-block;
+            cursor: pointer;
         }
 
         .dropbtn {
-            background-color: #3B82F6;
+            background-color: #dc8920;
             color: white;
-            padding: 6px 12px;
+            padding: 8px 12px;
             font-size: 14px;
             border: none;
             border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-            min-width: 120px;
+            min-width: 130px;
             text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
         }
 
         .dropbtn:hover {
-            background-color: #2563EB;
+            opacity: 0.85;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
+            top: 110%;
+            left: 0;
             background-color: #fff;
             min-width: 180px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 8px;
-            padding: 8px 0;
-            z-index: 1;
+            padding: 10px 0;
+            z-index: 100;
             max-height: 200px;
             overflow-y: auto;
         }
@@ -125,26 +134,36 @@
         }
 
         .dropdown-content ul li {
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #e5e7eb;
+            transition: 0.2s;
         }
 
         .dropdown-content ul li:last-child {
             border-bottom: none;
         }
 
+        .dropdown-content ul li:hover {
+            background-color: #f3f4f6;
+        }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
-    </style>
-</head>
-<body>
-<div class="content">
-    <div class="container">
-        <h2>Authors</h2>
 
-        <!-- Buton Back to Home mai mic, fără fundal -->
-        <a th:href="@{/home}" style="
+        /* Optional: icon arrow on dropbtn */
+        .dropbtn::after {
+            content: '▼';
+            font-size: 0.7em;
+            margin-left: 8px;
+            transition: 0.3s;
+        }
+
+        .dropdown:hover .dropbtn::after {
+            transform: rotate(180deg);
+        }
+
+        .back-home {
             position: absolute;
             top: 15px;
             left: 15px;
@@ -152,10 +171,62 @@
             font-weight: bold;
             text-decoration: none;
             font-size: 0.9rem;
-        ">
-            ← Back to Home
-        </a>
+            transition: 0.3s;
+        }
 
+        .back-home:hover {
+            opacity: 0.7;
+        }
+
+        #toggle-table-container-wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #toggle-table-btn {
+            background-color: rgb(89,90,95);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #toggle-table-btn:hover {
+            opacity: 0.85;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #1f1e11;
+            color: #fff;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+
+        .powered-text {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #555;      /* gri deschis */
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Authors List</h1>
+
+    <a th:href="@{/home}" class="back-home">← Back to Home</a>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/authors/new}" class="button" style="margin-right: 10px;">Add New Author</a>
+        <a th:href="@{/books/new}" class="button" style="background-color: #a49879;">Add New Book</a>
+    </div>
+
+    <!-- Table container cu scroll -->
+    <div id="authors-table-container" style="max-height: 280px; overflow-y: auto; margin-bottom: 20px;">
         <table>
             <thead>
             <tr>
@@ -171,9 +242,7 @@
                 <td th:text="${a.firstName + ' ' + a.lastName}"></td>
                 <td>
                     <div class="dropdown">
-                        <button class="dropbtn"
-                                th:text="${a.books != null ? #lists.size(a.books) + ' book(s)' : 'No books'}">
-                        </button>
+                        <button class="dropbtn" th:text="${a.books != null ? #lists.size(a.books) + ' book(s)' : 'No books'}"></button>
                         <div class="dropdown-content">
                             <ul>
                                 <li th:each="b : ${a.books}" th:text="${b.title}"></li>
@@ -189,23 +258,35 @@
             </tr>
             </tbody>
         </table>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <a th:href="@{/author/new}" class="button" style="margin-right: 10px;">Add New Author</a>
-            <a th:href="@{/book/new}" class="button" style="background-color: #3B82F6;">Add New Book</a>
-        </div>
     </div>
+
+    <!-- Buton toggle Show All / Show Less -->
+    <div id="toggle-table-container-wrapper">
+        <button id="toggle-table-btn" onclick="toggleTable()">
+            Show All
+        </button>
+    </div>
+
+    <script>
+        function toggleTable() {
+            const tableContainer = document.getElementById('authors-table-container');
+            const btn = document.getElementById('toggle-table-btn');
+
+            if (tableContainer.style.maxHeight === 'none') {
+                tableContainer.style.maxHeight = '280px';
+                btn.textContent = 'Show All';
+            } else {
+                tableContainer.style.maxHeight = 'none';
+                btn.textContent = 'Show Less';
+            }
+        }
+    </script>
+
 </div>
 
-<footer style="
-    text-align: center;
-    padding: 15px 0;
-    background: #f3f4f6;
-    color: #555;
-    font-size: 0.9em;
-">
+<footer>
     &copy; 2025 realbateman
+    <p class="powered-text">Powered by Spring Web MVC and Thymeleaf</p>
 </footer>
-
 </body>
 </html>

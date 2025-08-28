@@ -5,13 +5,15 @@
     <title>Books List</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #F3F4F6;
-            color: #1F2937;
+            font-family: 'Merriweather', serif;
+            background-image: url('/images/library.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            color: #1F2937;
         }
 
         .container {
@@ -26,7 +28,7 @@
             position: relative;
         }
 
-        h2 {
+        h1 {
             text-align: center;
             color: #1F2937;
             margin-bottom: 30px;
@@ -44,7 +46,7 @@
         }
 
         th {
-            background-color: #3B82F6;
+            background-color: #dc8920;
             color: white;
             text-transform: uppercase;
         }
@@ -61,7 +63,7 @@
             display: inline-block;
             padding: 8px 15px;
             margin-right: 5px;
-            background-color: rgba(40, 30, 238, 0.87);
+            background-color: rgb(220, 137, 32);
             color: #FFFFFF;
             text-decoration: none;
             border-radius: 6px;
@@ -70,7 +72,7 @@
         }
 
         a.button.delete {
-            background-color: #f91616;
+            background-color: #e76464;
         }
 
         a.button:hover {
@@ -94,7 +96,7 @@
         form.search-form button {
             padding: 8px 15px;
             border: none;
-            background-color: #3B82F6;
+            background-color: #1f1e11;
             color: #fff;
             border-radius: 0 6px 6px 0;
             cursor: pointer;
@@ -117,20 +119,51 @@
         }
 
         .back-home:hover {
-            opacity: 0.7; /* efect la hover */
+            opacity: 0.7;
         }
 
+        #toggle-table-container-wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #toggle-table-btn {
+            background-color: rgb(89,90,95);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #toggle-table-btn:hover {
+            opacity: 0.85;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #1f1e11;
+            color: #fff;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+
+        .powered-text {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #555;      /* gri deschis */
+        }
 
     </style>
 </head>
 <body>
 <div class="container">
 
-    <h2>Books List</h2>
+    <h1>Books List</h1>
 
-    <!-- Buton Back to Home mai mic, fără fundal -->
     <a th:href="@{/home}" class="back-home">← Back to Home</a>
-
 
     <!-- Search Form -->
     <form th:action="@{/books/search}" method="get" class="search-form">
@@ -186,9 +219,8 @@
     </div>
 
     <!-- Buton toggle Show All / Show Less -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <button id="toggle-table-btn" onclick="toggleTable()"
-                style="background-color:#10B981; border:none; color:white; border-radius:6px; padding:8px 15px; cursor:pointer;">
+    <div id="toggle-table-container-wrapper">
+        <button id="toggle-table-btn" onclick="toggleTable()">
             Show All
         </button>
     </div>
@@ -210,15 +242,9 @@
 
 </div>
 
-<footer style="
-    text-align: center;
-    padding: 15px 0;
-    background: #f3f4f6;
-    color: #555;
-    font-size: 0.9em;
-">
+<footer>
     &copy; 2025 realbateman
+    <p class="powered-text">Powered by Spring Web MVC and Thymeleaf</p>
 </footer>
-
 </body>
 </html>

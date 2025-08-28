@@ -5,15 +5,19 @@
     <title>Add New Author</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #F3F4F6;
-            color: #1F2937;
+            font-family: 'Merriweather', serif;
+            background-image: url('/images/library.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
             margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #1F2937;
         }
 
         .container {
-            max-width: 600px;
+            width: 500px;
             margin: 50px auto;
             padding: 30px;
             background-color: #fff;
@@ -23,9 +27,10 @@
             position: relative;
         }
 
-        h2 {
+        h1 {
             margin-bottom: 30px;
-            color: #3B82F6; /* Albastru ca in Add New Book */
+            margin-top: 70px;
+            color: #be8f3c; /* Albastru ca in Add New Book */
         }
 
         form {
@@ -49,7 +54,8 @@
 
         button {
             padding: 10px;
-            background-color: #3B82F6;
+            margin-top: 30px;
+            background-color: #dc8920;
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -62,36 +68,45 @@
             opacity: 0.85;
         }
 
-        a.button {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #10B981; /* Verde ca in Add New Book */
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: 0.3s;
-        }
-
-        a.button:hover {
-            opacity: 0.85;
-        }
-
         footer {
             text-align: center;
             padding: 15px 0;
-            background: #f3f4f6;
-            color: #555;
+            background-color: #1f1e11;
+            color: #fff;
             font-size: 0.9em;
-            margin-top: 30px;
+            margin-top: auto;
         }
+
+        .back-home {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: #595a5f;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            opacity: 0.7;
+        }
+
+        .powered-text {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #555;      /* gri deschis */
+        }
+
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Add New Author</h2>
+    <h1>Add New Author</h1>
 
-    <form th:action="@{/author/save}" th:object="${author}" method="post">
+    <a th:href="@{/authors}" class="back-home">← Back to Authors List</a>
+
+    <form th:action="@{/authors/save}" th:object="${author}" method="post">
         <input type="hidden" th:field="*{id}" />
 
         <label for="firstName">First Name</label>
@@ -103,19 +118,11 @@
         <button type="submit">Add Author</button>
     </form>
 
-    <div style="text-align: center;">
-        <a th:href="@{/templates/author}" class="button">Back to Authors</a>
-    </div>
 </div>
 
-<footer style="
-    text-align: center;
-    padding: 15px 0;
-    background: #f3f4f6;
-    color: #555;
-    font-size: 0.9em;
-">
+<footer>
     &copy; 2025 realbateman
+    <p class="powered-text">Powered by Spring Web MVC and Thymeleaf</p>
 </footer>
 </body>
 </html>
