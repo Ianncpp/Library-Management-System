@@ -20,7 +20,7 @@ public class LibraryManagementSystemApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(AuthorRepository authorRepo, BookRepository bookRepo) {
-        return _ -> {
+        return args -> {
             System.out.println("""
 
 
