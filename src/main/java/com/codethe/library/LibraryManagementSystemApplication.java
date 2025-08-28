@@ -19,8 +19,8 @@ public class LibraryManagementSystemApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(AuthorRepository authorRepository, BookRepository bookRepository) {
-        return args -> {
+    CommandLineRunner commandLineRunner(AuthorRepository authorRepo, BookRepository bookRepo) {
+        return _ -> {
             System.out.println("""
 
 
@@ -30,23 +30,68 @@ public class LibraryManagementSystemApplication {
 
                     """);
 
-            Author a1 = new Author("George", "Orwell");
-            authorRepository.save(a1);
+            // ==== George Orwell ====
+            Author orwell = new Author("George", "Orwell");
+            authorRepo.save(orwell);
 
-            Author a2 = new Author("John", "Doe");
-            authorRepository.save(a2);
+            bookRepo.save(new Book("1984", "111-AAA", orwell));
+            bookRepo.save(new Book("Animal Farm", "111-BBB", orwell));
 
-            Author a3 = new Author("Brad", "Meltzer");
-            authorRepository.save(a3);
+// ==== John Smith ====
+            Author smith = new Author("John", "Smith");
+            authorRepo.save(smith);
 
-            Book b1 = new Book("The Dark Knight", "001", a1);
-            bookRepository.save(b1);
+            bookRepo.save(new Book("Modern Programming", "222-AAA", smith));
+            bookRepo.save(new Book("Clean Code Explained", "222-BBB", smith));
 
-            Book b2 = new Book("1984", "002", a2);
-            bookRepository.save(b2);
+// ==== Jane Doe ====
+            Author doe = new Author("Jane", "Doe");
+            authorRepo.save(doe);
 
-            Book b3 = new Book("Harry Potter", "003", a3);
-            bookRepository.save(b3);
+            bookRepo.save(new Book("Introduction to Databases", "333-AAA", doe));
+            bookRepo.save(new Book("Advanced SQL Queries", "333-BBB", doe));
+
+// ==== Lucian Cristescu ====
+            Author cristescu = new Author("Lucian", "Cristescu");
+            authorRepo.save(cristescu);
+
+            bookRepo.save(new Book("Speranța pentru tine", "444-AAA", cristescu));
+            bookRepo.save(new Book("Puterea rugăciunii", "444-BBB", cristescu));
+
+// ==== Biblia (Colectiv) ====
+            Author biblic = new Author("Colectiv", "Biblic");
+            authorRepo.save(biblic);
+
+            bookRepo.save(new Book("Biblia", "555-AAA", biblic));
+            bookRepo.save(new Book("Noul Testament", "555-BBB", biblic));
+
+// ==== J.K. Rowling ====
+            Author rowling = new Author("J.K.", "Rowling");
+            authorRepo.save(rowling);
+
+            bookRepo.save(new Book("Harry Potter and the Philosopher's Stone", "666-AAA", rowling));
+            bookRepo.save(new Book("Harry Potter and the Chamber of Secrets", "666-BBB", rowling));
+
+// ==== Leo Tolstoy ====
+            Author tolstoy = new Author("Leo", "Tolstoy");
+            authorRepo.save(tolstoy);
+
+            bookRepo.save(new Book("War and Peace", "777-AAA", tolstoy));
+            bookRepo.save(new Book("Anna Karenina", "777-BBB", tolstoy));
+
+// ==== Fyodor Dostoevsky ====
+            Author dostoevsky = new Author("Fyodor", "Dostoevsky");
+            authorRepo.save(dostoevsky);
+
+            bookRepo.save(new Book("Crime and Punishment", "888-AAA", dostoevsky));
+            bookRepo.save(new Book("The Brothers Karamazov", "888-BBB", dostoevsky));
+
+// ==== Mihai Eminescu ====
+            Author eminescu = new Author("Mihai", "Eminescu");
+            authorRepo.save(eminescu);
+
+            bookRepo.save(new Book("Luceafărul", "999-AAA", eminescu));
+            bookRepo.save(new Book("Poezii", "999-BBB", eminescu));
 
         };
     }

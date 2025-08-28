@@ -2,33 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Author</title>
+    <title>Add New Author</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #F3F4F6;
             color: #1F2937;
+            margin: 0;
+            padding: 0;
         }
+
         .container {
-            max-width: 500px;
+            max-width: 600px;
             margin: 50px auto;
             padding: 30px;
             background-color: #fff;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-        h2 {
             text-align: center;
-            margin-bottom: 30px;
+            position: relative;
         }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #3B82F6; /* Albastru ca in Add New Book */
+        }
+
         form {
             display: flex;
             flex-direction: column;
+            text-align: left;
         }
+
         label {
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         input {
             padding: 10px;
             margin-bottom: 20px;
@@ -36,6 +46,7 @@
             border-radius: 6px;
             font-size: 1rem;
         }
+
         button {
             padding: 10px;
             background-color: #3B82F6;
@@ -46,21 +57,33 @@
             font-size: 1rem;
             transition: 0.3s;
         }
+
         button:hover {
             opacity: 0.85;
         }
+
         a.button {
             display: inline-block;
             margin-top: 10px;
             text-decoration: none;
             color: #fff;
-            background-color: #10B981;
+            background-color: #10B981; /* Verde ca in Add New Book */
             padding: 8px 12px;
             border-radius: 6px;
             transition: 0.3s;
         }
+
         a.button:hover {
             opacity: 0.85;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #f3f4f6;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -70,18 +93,29 @@
 
     <form th:action="@{/author/save}" th:object="${author}" method="post">
         <input type="hidden" th:field="*{id}" />
+
         <label for="firstName">First Name</label>
-        <input type="text" th:field="*{firstName}" id="firstName" required/>
+        <input type="text" th:field="*{firstName}" id="firstName" placeholder="Enter first name" required />
 
         <label for="lastName">Last Name</label>
-        <input type="text" th:field="*{lastName}" id="lastName" required/>
+        <input type="text" th:field="*{lastName}" id="lastName" placeholder="Enter last name" required />
 
         <button type="submit">Add Author</button>
     </form>
 
     <div style="text-align: center;">
-        <a th:href="@{/author}" class="button">Back to Authors</a>
+        <a th:href="@{/templates/author}" class="button">Back to Authors</a>
     </div>
 </div>
+
+<footer style="
+    text-align: center;
+    padding: 15px 0;
+    background: #f3f4f6;
+    color: #555;
+    font-size: 0.9em;
+">
+    &copy; 2025 realbateman
+</footer>
 </body>
 </html>

@@ -6,14 +6,19 @@
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
+            margin: 150px auto;
             background-color: #F3F4F6;
             color: #1F2937;
             display: flex;
             flex-direction: column;
+            padding: 0;
+        }
+
+        .content {
+            flex: 1; /* ocupă tot spațiul dintre header și footer */
+            display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
         }
 
         .container {
@@ -54,23 +59,26 @@
             background-color: #EF4444;
         }
 
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            color: #6B7280;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1 th:text="'Welcome to the Library, ' + ${name} + '!'">Welcome to the Library, Reader!</h1>
-    <a th:href="@{/author}" class="btn">Authors</a>
-    <a th:href="@{/book}" class="btn btn-books">Books</a>
-    <a th:href="@{/meme}" class="btn btn-meme">Smart Man in Glasses</a>
+<div class="content">
+    <div class="container">
+        <h1 th:text="'Welcome to the Library, ' + ${name} + '!'">Welcome to the Library, Reader!</h1>
+        <a th:href="@{/authors}" class="btn">Authors</a>
+        <a th:href="@{/books}" class="btn btn-books">Books</a>
+        <a th:href="@{/meme}" class="btn btn-meme">Smart Man in Glasses</a>
+    </div>
 </div>
 
-<footer>
+<footer style="
+    margin: 50px auto;
+    text-align: center;
+    padding: 15px 0;
+    background: #f3f4f6;
+    color: #555;
+    font-size: 0.9em;
+">
     &copy; 2025 realbateman
 </footer>
 </body>

@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Book</title>
+    <title th:text="'Add New Book'">Add New Book</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: #F3F4F6;
             color: #1F2937;
             margin: 0;
@@ -16,15 +16,16 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 30px;
-            background-color: #FFFFFF;
+            background-color: #fff;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
         }
 
         h2 {
-            text-align: center;
-            color: #1F2937;
             margin-bottom: 30px;
+            color: #3B82F6;
         }
 
         form {
@@ -35,6 +36,7 @@
         label {
             margin-bottom: 5px;
             font-weight: bold;
+            text-align: left;
         }
 
         input, select {
@@ -60,39 +62,55 @@
             opacity: 0.85;
         }
 
-        a.button {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #1F2937;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Edit Book</h2>
+    <h2 th:text="'Add New Book'">Add New Book</h2>
+
+    <!-- Buton Back to Home mai mic, fără fundal -->
+    <a th:href="@{/books}" style="
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #595a5f;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+">
+        ← Back to Book List
+    </a>
 
     <form th:action="@{/book/save}" th:object="${book}" method="post">
-        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{id}" />
+
         <label for="title">Title</label>
-        <input type="text" th:field="*{title}" id="title" required/>
+        <input type="text" th:field="*{title}" id="title" placeholder="Enter book title" required />
 
         <label for="isbn">ISBN</label>
-        <input type="text" th:field="*{isbn}" id="isbn" required/>
+        <input type="text" th:field="*{isbn}" id="isbn" placeholder="Enter ISBN" required />
 
         <label for="author">Author</label>
         <select id="author" name="author.id" required>
-            <option th:each="a : ${authors}" th:value="${a.id}" th:text="${a.firstName + ' ' + a.lastName}"
-                    th:selected="${a.id} == ${book.author.id}"></option>
+            <option th:each="a : ${authors}"
+                    th:value="${a.id}"
+                    th:text="${a.firstName + ' ' + a.lastName}"
+                    th:selected="${book.author != null} ? ${a.id} == ${book.author.id} : false">
+            </option>
         </select>
 
-        <button type="submit">Update Book</button>
+        <button type="submit" th:text="'Add Book'"></button>
     </form>
-
-    <div style="text-align: center;">
-        <a th:href="@{/book}" class="button">Back to Book List</a>
-    </div>
 </div>
+
+<footer style="
+    text-align: center;
+    padding: 15px 0;
+    background: #f3f4f6;
+    color: #555;
+    font-size: 0.9em;
+">
+    &copy; 2025 realbateman
+</footer>
 </body>
 </html>

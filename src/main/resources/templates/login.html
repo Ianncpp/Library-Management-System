@@ -2,17 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Enter Your Name</title>
+    <title>Login</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #F3F4F6;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            min-height: 100vh;
             margin: 0;
         }
+
+        .content {
+            flex: 1; /* ocupă tot spațiul dintre header și footer */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .login-container {
             background-color: #fff;
             padding: 50px 60px;
@@ -20,6 +27,12 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
             text-align: center;
         }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #3B82F6;
+        }
+
         input[type="text"] {
             padding: 12px;
             width: 80%;
@@ -28,6 +41,7 @@
             border: 1px solid #ccc;
             font-size: 16px;
         }
+
         button {
             padding: 12px 24px;
             background-color: #3B82F6;
@@ -38,21 +52,43 @@
             cursor: pointer;
             transition: 0.3s;
         }
+
         button:hover {
             opacity: 0.85;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #f3f4f6;
+            color: #555;
+            font-size: 0.9em;
+            margin-top: auto; /* împinge footer-ul jos */
         }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <h2>Enter Your Name</h2>
-    <form th:action="@{/login}" method="post">
-        <label>
-            <input type="text" name="name" placeholder="Your name" required/>
-        </label>
-        <br/>
-        <button type="submit">Continue</button>
-    </form>
+<div class="content">
+    <div class="login-container">
+        <h2>Enter Your Name</h2>
+        <form th:action="@{/login}" method="post">
+            <label>
+                <input type="text" name="name" placeholder="Your name" required/>
+            </label>
+            <br/>
+            <button type="submit">Continue</button>
+        </form>
+    </div>
 </div>
+
+<footer style="
+    text-align: center;
+    padding: 15px 0;
+    background: #f3f4f6;
+    color: #555;
+    font-size: 0.9em;
+">
+    &copy; 2025 realbateman
+</footer>
 </body>
 </html>

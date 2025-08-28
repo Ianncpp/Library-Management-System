@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/author")
+@RequestMapping("/authors")
 public class AuthorController {
 
     private final AuthorService authorService;
@@ -24,24 +24,24 @@ public class AuthorController {
     @GetMapping
     public String getAllAuthors(Model model) {
         model.addAttribute("author", authorService.findAllAuthors());
-        return "authors";
+        return "author/authors";
     }
 
     @GetMapping("/new")
     public String newAuthor(Model model) {
         model.addAttribute("author", new Author());
-        return "author-new";
+        return "author/author-new";
     }
 
     @PostMapping("/save")
     public String saveAuthor(Author author) {
         authorService.saveAuthor(author);
-        return "redirect:/author";
+        return "redirect:/authors";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
-        return "redirect:/author";
+        return "redirect:/authors";
     }
 }
