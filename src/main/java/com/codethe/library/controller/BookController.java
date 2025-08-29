@@ -34,6 +34,13 @@ public class BookController {
         return "book/books-add";
     }
 
+    @GetMapping("/bnew")
+    public String newBookFromAuthor(Model model) {
+        model.addAttribute("book", new Book());
+        model.addAttribute("authors", authorService.findAllAuthors());
+        return "book/books-auth-add";
+    }
+
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Long id, Model model) {
         model.addAttribute("book", bookService.getBookById(id));

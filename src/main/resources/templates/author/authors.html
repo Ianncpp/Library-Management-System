@@ -18,7 +18,7 @@
         }
 
         .container {
-            max-width: 900px;
+            width: 900px;
             min-width: 600px;
             margin: 50px auto;
             padding: 30px;
@@ -222,7 +222,7 @@
 
     <div style="text-align: center; margin-top: 20px;">
         <a th:href="@{/authors/new}" class="button" style="margin-right: 10px;">Add New Author</a>
-        <a th:href="@{/books/new}" class="button" style="background-color: #a49879;">Add New Book</a>
+        <a th:href="@{/books/bnew}" class="button" style="background-color: #a49879;">Add New Book</a>
     </div>
 
     <!-- Table container cu scroll -->
@@ -230,7 +230,6 @@
         <table>
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Books</th>
                 <th>Actions</th>
@@ -238,7 +237,6 @@
             </thead>
             <tbody>
             <tr th:each="a : ${author}">
-                <td th:text="${a.id}"></td>
                 <td th:text="${a.firstName + ' ' + a.lastName}"></td>
                 <td>
                     <div class="dropdown">

@@ -104,7 +104,7 @@
 <div class="container">
     <h1 th:text="'Add New Book'">Add New Book</h1>
 
-    <a th:href="@{/books}" class="back-home">← Back to Books List</a>
+    <a th:href="@{/authors}" class="back-home">← Back to Author List</a>
 
     <form th:action="@{/books/save}" th:object="${book}" method="post">
         <input type="hidden" th:field="*{id}" />

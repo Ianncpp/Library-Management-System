@@ -30,7 +30,7 @@ public class AuthorController {
     @GetMapping("/new")
     public String newAuthor(Model model) {
         model.addAttribute("author", new Author());
-        return "author/author-new";
+        return "author/author-add";
     }
 
     @PostMapping("/save")
